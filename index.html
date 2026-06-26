@@ -3,88 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Don Herrajes | Ferretería en CDMX</title>
+    <title>Don Herrajes | Catálogo Digital</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-        body{ background:#f5f7fa; color:#222; }
-        header{ background:linear-gradient(135deg,#0f172a,#1e3a8a); color:white; padding:60px 20px; text-align:center; }
-        .logo-principal { width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
-        header h1{ font-size:3rem; }
-        header p{ margin-top:10px; font-size:1.2rem; }
-        .btn{ display:inline-block; margin-top:25px; padding:15px 30px; background:#f97316; color:white; text-decoration:none; border-radius:50px; font-weight:bold; transition: background 0.3s; }
-        .btn:hover{ background:#ea580c; }
-        section{ padding:60px 20px; max-width:1200px; margin:auto; }
-        h2{ text-align:center; margin-bottom:30px; color:#0f172a; }
-        .oferta-semana { background: linear-gradient(135deg, #fef3c7, #fffbeb); border: 2px dashed #f97316; border-radius: 20px; padding: 40px 20px; margin: 40px auto; max-width: 900px; }
-        .oferta-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; }
-        .oferta-img { width: 100%; max-width: 300px; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .oferta-info { flex: 1; min-width: 280px; text-align: left; }
-        .badge { background: #ef4444; color: white; padding: 5px 15px; border-radius: 50px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-        .card-btn { background:white; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,.08); text-align:center; text-decoration:none; color:#222; font-weight:600; font-size:1.1rem; display:block; transition: all 0.3s ease; border: 1px solid transparent; }
-        .card-btn:hover { transform: translateY(-5px); background:#0f172a; color:white; border-color:#f97316; box-shadow:0 8px 20px rgba(0,0,0,.15); }
-        .contacto{ background:#0f172a; color:white; text-align:center; padding:50px 20px; }
-        footer{ background:#020617; color:white; text-align:center; padding:20px; }
-        iframe{ width:100%; height:400px; border:none; border-radius:15px; }
+        
+        /* FONDO OSCURO ESTILO CRISTAL Y LAVISA */
+        body{ background:#121214; color:#e2e8f0; padding-bottom: 20px; }
+        
+        header{ background:linear-gradient(135deg,#090d16,#111827); padding:40px 20px; text-align:center; border-bottom: 3px solid #f97316; }
+        .logo-principal { width: 190px; height: auto; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto; }
+        header h1{ font-size:2.5rem; color:#fff; letter-spacing: 1px; }
+        header p{ margin-top:5px; font-size:1.1rem; color:#94a3b8; }
+        
+        /* SECCIONES ROJAS/NARANJAS COMO EN 7094.JPG */
+        .barra-titulo { background: #f97316; color: white; padding: 12px 20px; font-size: 1.3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 15px 0; border-radius: 4px; }
+        
+        section{ padding:10px 15px; max-width:1200px; margin:auto; }
+        
+        /* CUADRÍCULA DE PRODUCTOS (LO MÁS VENDIDO) */
+        .grid-productos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        @media(min-width: 768px) { .grid-productos { grid-template-columns: repeat(4, 1fr); } }
+        
+        /* TARJETAS ESTILO OSCURO CON RELIEVE */
+        .producto-card { background: #1e1e24; border: 1px solid #2d2d35; border-radius: 12px; padding: 12px; text-align: center; text-decoration: none; color: white; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .producto-img-container { background: white; border-radius: 8px; padding: 10px; width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; }
+        .producto-img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .producto-titulo { font-size: 0.85rem; margin-top: 10px; font-weight: 600; color: #cbd5e1; min-height: 40px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; }
+        .btn-cotizar-prod { background: #f97316; color: white; padding: 6px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; margin-top: 8px; text-transform: uppercase; }
+
+        /* SECCIÓN MARCAS */
+        .grid-marcas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
+        .marca-item { background: white; color: #111827; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 8px rgba(0,0,0,0.1); }
+
+        /* SECCIÓN CATEGORÍAS EN LISTA DE BOTONES */
+        .grid-cat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .cat-link { background: #1e1e24; border-left: 4px solid #f97316; padding: 15px; border-radius: 6px; color: white; text-decoration: none; font-weight: 600; font-size: 0.95rem; display: block; }
+
+        .contacto{ background:#1e1e24; color:white; padding:30px 20px; border-radius: 12px; margin-top: 25px; border: 1px solid #2d2d35; }
+        .contacto p { margin-bottom: 10px; font-size: 0.95rem; }
+        footer{ background:#090d16; color:#64748b; text-align:center; padding:20px; margin-top: 30px; font-size: 0.85rem; }
+        iframe{ width:100%; height:250px; border:none; border-radius:8px; margin-top: 15px; }
+
+        /* BOTÓN FLOTANTE */
+        .whatsapp-flotante { position: fixed; width: 55px; height: 55px; bottom: 20px; right: 20px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 28px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
     </style>
 </head>
 <body>
+
+<a href="https://wa.me/525558155618?text=Hola,%20necesito%20atención%20para%20un%20pedido" class="whatsapp-flotante" target="_blank">💬</a>
 
 <header>
     <img src="6792_2.png" alt="Logotipo Don Herrajes" class="logo-principal">
     <h1>DON HERRAJES</h1>
     <p>Todo para construir, reparar y mejorar</p>
-    <a class="btn" href="https://wa.me/525558155618?text=Hola,%20me%20gustaría%20solicitar%20una%20cotización" target="_blank">Cotizar por WhatsApp</a>
 </header>
 
 <section>
-    <h2>¿Quiénes Somos?</h2>
-    <div style="background:white; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,.08); text-align:center;">
-        <p>En Don Herrajes ofrecemos una amplia variedad de productos para construcción, plomería, electricidad, herrajes, herramientas y mantenimiento.</p>
-    </div>
-</section>
+    <!-- LO MÁS VENDIDO -->
+    <div class="barra-titulo">🔥 Lo Más Vendido</div>
+    <div class="grid-productos">
+        
+        <!-- Producto 1 -->
+        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20la%20Pulidora%20Profesional%20de%2010%20pulgadas" target="_blank" class="producto-card">
+            <div class="producto-img-container">
+                <img src="pulidora.jpeg" alt="Pulidora Profesional">
+            </div>
+            <div class="producto-titulo">Pulidora Eléctrica 10" Ergonómica</div>
+            <div class="btn-cotizar-prod">Cotizar</div>
+        </a>
 
-<section class="oferta-semana">
-    <div class="oferta-container">
-        <img src="pulidora.jpeg" alt="Pulidora" class="oferta-img">
-        <div class="oferta-info">
-            <span class="badge">🔥 Oferta de la Semana</span>
-            <h3>Pulidora Profesional</h3>
-            <!-- DESCRIPCIÓN ACTUALIZADA -->
-            <p><strong>Enceradora y pulidora eléctrica profesional 10 pulgadas</strong>, diseñada con mango ergonómico para mayor comodidad y control.</p>
-            <a class="btn" href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20la%20enceradora%20y%20pulidora%20eléctrica%20de%2010%20pulgadas" target="_blank">Cotizar por WhatsApp</a>
-        </div>
+        <!-- Producto 2 (Ejemplo listo para que cambies la imagen después) -->
+        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20la%20Cerradura%20de%20Sobreponer" target="_blank" class="producto-card">
+            <div class="producto-img-container">
+                <img src="6792_2.png" alt="Cerradura" style="opacity: 0.3;"> <!-- Reemplazar con imagen real cuando la subas -->
+            </div>
+            <div class="producto-titulo">Cerradura de Sobreponer Instafácil</div>
+            <div class="btn-cotizar-prod">Cotizar</div>
+        </a>
+
+        <!-- Producto 3 -->
+        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20el%20Disco%20de%20Corte" target="_blank" class="producto-card">
+            <div class="producto-img-container">
+                <img src="6792_2.png" alt="Disco" style="opacity: 0.3;">
+            </div>
+            <div class="producto-titulo">Disco de Corte de Alta Precisión</div>
+            <div class="btn-cotizar-prod">Cotizar</div>
+        </a>
+
+        <!-- Producto 4 -->
+        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20la%20Cinta%20Masking%20Tape" target="_blank" class="producto-card">
+            <div class="producto-img-container">
+                <img src="6792_2.png" alt="Cinta" style="opacity: 0.3;">
+            </div>
+            <div class="producto-titulo">Cinta Masking Tape Industrial</div>
+            <div class="btn-cotizar-prod">Cotizar</div>
+        </a>
+
     </div>
 </section>
 
 <section>
-    <h2>Nuestras Categorías</h2>
-    <div class="grid">
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Herrajes" target="_blank" class="card-btn">🔩 Herrajes</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Cerraduras" target="_blank" class="card-btn">🚪 Cerraduras</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Herramientas" target="_blank" class="card-btn">🔧 Herramientas</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Material%20Eléctrico" target="_blank" class="card-btn">⚡ Material Eléctrico</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Plomería" target="_blank" class="card-btn">🚰 Plomería</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Tornillería" target="_blank" class="card-btn">🪛 Tornillería</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Pinturas" target="_blank" class="card-btn">🎨 Pinturas</a>
-        <a href="https://wa.me/525558155618?text=Hola,%20me%20interesa%20ver%20el%20catálogo%20de%20Construcción" target="_blank" class="card-btn">🏗️ Construcción</a>
+    <!-- CATEGORIAS -->
+    <div class="barra-titulo">📁 Categorías</div>
+    <div class="grid-cat">
+        <a href="https://wa.me/525558155618?text=Me%20interesa%20Herrajes" target="_blank" class="cat-link">🔩 Herrajes</a>
+        <a href="https://wa.me/525558155618?text=Me%20interesa%20Cerraduras" target="_blank" class="cat-link">🚪 Cerraduras</a>
+        <a href="https://wa.me/525558155618?text=Me%20interesa%20Herramientas" target="_blank" class="cat-link">🔧 Herramientas</a>
+        <a href="https://wa.me/525558155618?text=Me%20interesa%20Material%20Eléctrico" target="_blank" class="cat-link">⚡ Eléctrico</a>
     </div>
 </section>
 
 <section>
-    <h2>Ubicación</h2>
-    <iframe src="https://maps.google.com/maps?q=Hector%20Victoria%20270%20Granjas%20Navidad%20CDMX&output=embed"></iframe>
+    <!-- MARCAS PRESTIGIO -->
+    <div class="barra-titulo">🛠️ Marcas Disponibles</div>
+    <div class="grid-marcas">
+        <div class="marca-item">TRUPER</div>
+        <div class="marca-item">PHILLIPS</div>
+        <div class="marca-item">FANDELI</div>
+        <div class="marca-item">YALE</div>
+        <div class="marca-item">BOSCH</div>
+        <div class="marca-item">TUK</div>
+    </div>
 </section>
 
-<section class="contacto">
-    <h2>Contacto</h2>
-    <p>📍 Héctor Victoria 270, Col. Granjas Navidad, C.P. 05219, Ciudad de México</p>
-    <br>
-    <p>📞 WhatsApp: 55 5815 5618</p>
+<section>
+    <div class="barra-titulo">📍 Sucursal y Contacto</div>
+    <div class="contacto">
+        <p><strong>Dirección:</strong> Héctor Victoria 270, Col. Granjas Navidad, C.P. 05219, CDMX</p>
+        <p><strong>Horario:</strong> Lun a Vie: 8:00 AM - 5:30 PM | Sáb: 8:00 AM - 2:30 PM</p>
+        <p><strong>WhatsApp:</strong> 55 5815 5618</p>
+        <p><strong>Pagos:</strong> 💵 Efectivo | 💳 Tarjetas | 📱 SPEI</p>
+        <iframe src="https://maps.google.com/maps?q=Hector%20Victoria%20270%20Granjas%20Navidad%20CDMX&output=embed"></iframe>
+    </div>
 </section>
 
-<footer>© 2026 Don Herrajes - Todos los derechos reservados</footer>
+<footer>© 2026 Don Herrajes - Distribuidor Ferretero</footer>
 
 </body>
 </html>
